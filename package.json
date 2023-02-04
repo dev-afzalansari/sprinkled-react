@@ -2,7 +2,7 @@
   "name": "sprinkled-react",
   "description": "",
   "main": "/dist/index.js",
-  "types": "/dis/index.d.ts",
+  "types": "/dist/index.d.ts",
   "scripts": {
     "format": "prettier src/**/*.ts --write",
     "build": "tsc -p tsconfig.json"

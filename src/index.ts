@@ -22,7 +22,7 @@ export function createFactory<
     {
       get: (_: unknown, element: string) => {
         return forwardRef<Parameters<TSprinkleFn>[0]>((props, ref) => {
-          const { sprinkleProps, otherProps, className } = extractProps(
+          const { sprinkleProps, otherProps, style, className } = extractProps(
             props,
             sprinkles
           )
@@ -39,6 +39,7 @@ export function createFactory<
           return createElement(element, {
             ref,
             className: `${classes} ${className}`.trim(),
+            style,
             ...otherProps
           })
         })
