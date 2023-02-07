@@ -19,8 +19,9 @@ Example on Stackblitz
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Escape Hatch](#escape-hatch)
 - [APIs](#apis)
-  - [createFactory](#createFactory)
+  - [createFactory](#createfactory)
 - [License](#license)
 
 # Installation
@@ -74,11 +75,26 @@ function App() {
 }
 ```
 
+# Escape Hatch
+
+Instead of passing an inline `style` prop you can pass css properties starting with two underscore like this `__color` as props which is helpful when you wanna use property or value that isn't configured in your design system. This can be really helpful sometimes.
+
+```ts
+// app.tsx
+import { s } from './components'
+
+function App() {
+  return <s.h1 __fontSize='4rem' __color='turquoise'>Afzal Ansari</s.h1>
+}
+```
+
 # APIs
 ## createFactory
 > createFactory({ sprinkles: SprinklesFn, customElement?: ({ element: string, classes: string, props: NonCSSProps }) => JSX.Element | null | undefined })
 
-You will use `createFactory` fn to create the object and use it's properties as jsx in your components. It takes an object as an argument. The required `sprinkles` property should be assigned with `sprinkles` fn created from the `createSprinkles` fn from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/). The `customElement` property lets you to render your own component and assign the sprinkles generated class to it.
+You will use `createFactory` fn to create the object and use it's properties as jsx in your components. It takes an object as an argument. The required `sprinkles` property should be assigned with `sprinkles` fn created from the `createSprinkles` fn from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/).
+
+The `customElement` property lets you render your own element or component and assign the sprinkles generated class to it. You will receive an object with `element`, `classes` & `props` property which are the name of the element it was called for, the classes generated against the props passed to it and the props which are not properties from your design system respectively. This can be helpful when you are trying to consume a ui library which does not come with pre-configured styling solution or you want to build reusable & stylable components.
 
 ```ts
 // /components/index.ts
@@ -117,4 +133,45 @@ function App() {
     <s.h1 fontSize='lg' color='red-100'>Afzal Ansari</s.h1>
   </c.Center>
 }
+```
+
+# Typescript
+
+You might want to extend the props being accepted by the jsx.
+
+```ts
+import { createFactory } from 'sprinkled-react'
+import { sprinkles } from '../sprinkles.css.ts'
+
+// First pass the typeof your sprinkles fn as generic parameter and then the extra prop type you want mark as valid props.
+export const s = createFactory<typeof sprinkles, { foo: string, bar: number }>({ sprinkles })
+```
+
+Here is an example with react router's [link](https://reactrouter.com/en/main/components/link) component which accepts `to` prop.
+
+```ts
+// /components/index.ts
+import * as React from 'react'
+import { createFactory } from 'sprinkled-react'
+import { sprinkles } from '../styles/sprinkles.css'
+import { Link } from 'react-router-dom'
+
+type CustomElementProps = {
+    element: string;
+    classes: string,
+    props: { to: string, children: React.ReactNode }
+}
+
+export const s = createFactory<typeof sprinkles, CustomElementProps['props']>({ 
+    sprinkles,
+    customElement: ({ element, classes, props }: CustomElementProps) => {
+        switch(element) {
+            case 'Link':
+                return <Link to={props.to} className={classes}>{props.children}</Link>
+                // <s.Link to='...' ...>...</s.Link> is now a stylable `Link` component.
+            default:
+                return null
+        }
+    }
+})
 ```
