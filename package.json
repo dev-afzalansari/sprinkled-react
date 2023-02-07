@@ -1,7 +1,7 @@
 {
   "name": "sprinkled-react",
-  "version": "0.0.2",
-  "description": "",
+  "version": "0.0.3",
+  "description": "A library to bind vanilla-extract/sprinkles with react components",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -20,5 +20,20 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.5"
-  }
+  },
+  "repository": {
+    "url": "https://github.com/dev-afzalansari/sprinkled-react",
+    "type": "git"
+  },
+  "homepage": "https://github.com/dev-afzalansari/sprinkled-react",
+  "bugs": {
+    "url": "https://github.com/dev-afzalansari/sprinkled-react/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "vanilla extract",
+    "vanilla extract sprinkles",
+    "vanilla extract react",
+    "sprinkled react"
+  ]
 }
