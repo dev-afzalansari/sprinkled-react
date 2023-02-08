@@ -2,18 +2,25 @@
 
 A library to bind sprinkles with react.
 
-This library helps you to bind your `sprinkles` function from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/) with react so you can consume it's properties within jsx as props fast & easily.
+This library helps you to bind your `sprinkles` function from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/) with react so you can consume it's properties within jsx as props fast & easily. This library is inspired by [Box](https://chakra-ui.com/docs/components/box) component offered by ui libraries but takes different approach.
 
-Example
+Basically you will not have to bother yourself to pass `as` prop anytime you need to render an element other than `div` and since you will be writing host-specific jsx the code will be more clear and readable.
+
+**Example**
 
 ```ts
 import { s } from './components'
 
 function Component() {
-  return <s.h1 fontSize='lg' color='gray-100'>Sprinkled-React</s.h1>
+  return (
+    <s.div height='100vh' width='100vw' display='flex' alignItems='center' justifyContent='center'>
+      <s.h1 fontSize='lg' color='gray-100'>Sprinkled-React</s.h1>
+      <s.h2 fontSize='md' color='gray-200'>A library to bind sprinkles with react.</s.h2>
+    </s.div>
+  )
 }
 ```
-Example on Stackblitz
+[Example on Stackbitz](https://stackblitz.com/edit/sprinkled-react?file=package.json)
 
 # Table of Contents
 
@@ -22,6 +29,7 @@ Example on Stackblitz
 - [Escape Hatch](#escape-hatch)
 - [APIs](#apis)
   - [createFactory](#createfactory)
+- [Typescript](#typescript)
 - [License](#license)
 
 # Installation
@@ -92,7 +100,7 @@ function App() {
 ## createFactory
 > createFactory({ sprinkles: SprinklesFn, customElement?: ({ element: string, classes: string, props: NonCSSProps }) => JSX.Element | null | undefined })
 
-You will use `createFactory` fn to create the object and use it's properties as jsx in your components. It takes an object as an argument. The required `sprinkles` property should be assigned with `sprinkles` fn created from the `createSprinkles` fn from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/).
+You will use `createFactory` fn to create the object and use it's properties as jsx in your components. It takes an object as an argument. The required `sprinkles` property should be assigned with `sprinkles` fn created using the `createSprinkles` fn from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/).
 
 The `customElement` property lets you render your own element or component and assign the sprinkles generated class to it. You will receive an object with `element`, `classes` & `props` property which are the name of the element it was called for, the classes generated against the props passed to it and the props which are not properties from your design system respectively. This can be helpful when you are trying to consume a ui library which does not come with pre-configured styling solution or you want to build reusable & stylable components.
 
@@ -175,3 +183,7 @@ export const s = createFactory<typeof sprinkles, CustomElementProps['props']>({
     }
 })
 ```
+
+# License
+
+[MIT License](https://github.com/dev-afzalansari/sprinkled-react/blob/main/LICENSE)
