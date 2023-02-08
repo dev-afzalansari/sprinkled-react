@@ -16,6 +16,6 @@ export type JSXFactory<TSprinkleFn extends SprinkleFn, TCustomProps> = Record<
       children?: ReactNode
     } & HTMLProps<TProps> &
       EscapedCSSProperties<CSSProperties> &
-      TCustomProps
+      Partial<TCustomProps>
   ) => JSX.Element
 >
