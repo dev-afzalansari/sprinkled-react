@@ -1,6 +1,11 @@
 # Sprinkled-React
 
-A library to bind sprinkles with react.
+<div>
+  <span><a href='https://npmjs.com/package/sprinkled-react'><img src='https://img.shields.io/npm/v/sprinkled-react' /></a></span>
+  <span><a href='https://bundlephobia.com/package/sprinkled-react'><img src='https://img.shields.io/bundlephobia/minzip/sprinkled-react.svg' /></a></span>
+</div>
+
+**A library to bind sprinkles with react.**
 
 This library helps you to bind your `sprinkles` function from [vanilla-extract/sprinkles](https://vanilla-extract.style/documentation/packages/sprinkles/) with react so you can consume it's properties within jsx as props fast & easily. This library is inspired by [Box](https://chakra-ui.com/docs/components/box) component offered by ui libraries but takes different approach.
 
