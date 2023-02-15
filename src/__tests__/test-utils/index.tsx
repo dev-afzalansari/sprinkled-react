@@ -11,6 +11,10 @@ type CustomElementProps = {
 
 export const s = createFactory({
   sprinkles,
+  reverseConditions: {
+    default: 'default',
+    f: 'focus'
+  },
   customElement: ({ element, classes, props }: CustomElementProps) => {
     if (element === 'Button') {
       return (

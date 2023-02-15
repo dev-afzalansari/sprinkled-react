@@ -118,4 +118,32 @@ describe('Sprinkled React element tests', () => {
 
     expect(elem).toHaveAttribute('type', 'submit')
   })
+
+  test('Accepts reversed condition props', () => {
+    function Comp() {
+      const inputRef = React.useRef<HTMLInputElement>(null)
+
+      React.useEffect(() => {
+        if (inputRef.current) {
+          inputRef.current.focus()
+        }
+      }, [])
+
+      return (
+        <s.input
+          type="text"
+          placeholder="your-name"
+          ref={inputRef}
+          _f={{ m: 'lg' }}
+        />
+      )
+    }
+
+    const { getByPlaceholderText } = render(<Comp />)
+
+    const elem = getByPlaceholderText('your-name')
+
+    expect(elem).toHaveFocus()
+    expect(elem).toHaveStyle({ margin: '16px' })
+  })
 })
