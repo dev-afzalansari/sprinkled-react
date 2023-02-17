@@ -40,7 +40,7 @@ export function extractProps(
             [reverseLookup.default]: sprinkleProps[key],
             [condition.name]: condition.values[key]
           }
-        } else {
+        } else if(!Array.isArray(sprinkleProps[key])) {
           sprinkleProps[key][condition.name] = condition.values[key]
         }
       } else {

@@ -30,7 +30,8 @@ const props = defineProperties({
     default: {},
     focus: { selector: '&:focus' }
   },
-  defaultCondition: 'default'
+  defaultCondition: 'default',
+  responsiveArray: ['default', 'focus']
 })
 
 export const sprinkles = createSprinkles(props)
