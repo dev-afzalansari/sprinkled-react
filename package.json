@@ -51,5 +51,11 @@
     "vanilla extract sprinkles",
     "vanilla extract react",
     "sprinkled react"
-  ]
+  ],
+  "dependencies": {
+    "react-fast-compare": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
 }
