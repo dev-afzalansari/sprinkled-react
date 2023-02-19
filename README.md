@@ -1,8 +1,8 @@
 # Sprinkled-React
 
 <div>
-  <span><a href='https://npmjs.com/package/sprinkled-react'><img src='https://img.shields.io/npm/v/sprinkled-react' /></a></span>
-  <span><a href='https://bundlephobia.com/package/sprinkled-react'><img src='https://img.shields.io/bundlephobia/minzip/sprinkled-react.svg' /></a></span>
+  <span><a href='https://npmjs.com/package/sprinkled-react'><img alt="npm" src='https://img.shields.io/npm/v/sprinkled-react' /></a></span>
+  <span><a href='https://npmjs.com/package/sprinkled-react'><img alt="npm" src="https://img.shields.io/npm/dt/sprinkled-react"></a></span>
 </div>
 
 **A library to bind sprinkles with react.**
